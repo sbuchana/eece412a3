@@ -1,20 +1,39 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SimpleVPN
 {
     public partial class Form1 : Form
     {
+        SocketCommunication socket;
+
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void button_connect_Click(object sender, EventArgs e)
+        {
+            var ipAddress = textBox2.Text;
+            int port;
+
+            try {
+                port = Int32.Parse(textBox1.Text);
+            } catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+
+            if (radioButton_server.Checked)
+            {
+                socket = new SocketServer(ipAddress, port);
+            }
+            else
+            {
+                socket = new SocketClient(ipAddress, port);
+            }
+            
+            socket.Connect();
         }
     }
 }

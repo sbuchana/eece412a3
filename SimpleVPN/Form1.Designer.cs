@@ -29,17 +29,18 @@
         private void InitializeComponent()
         {
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.button_send = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton_server = new System.Windows.Forms.RadioButton();
+            this.radioButton_client = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.button_continue = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.button_connect = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox1
@@ -49,14 +50,14 @@
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 0;
             // 
-            // button1
+            // button_send
             // 
-            this.button1.Location = new System.Drawing.Point(143, 245);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Send";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button_send.Location = new System.Drawing.Point(198, 245);
+            this.button_send.Name = "button_send";
+            this.button_send.Size = new System.Drawing.Size(75, 23);
+            this.button_send.TabIndex = 1;
+            this.button_send.Text = "Send";
+            this.button_send.UseVisualStyleBackColor = true;
             // 
             // textBox2
             // 
@@ -65,27 +66,27 @@
             this.textBox2.Size = new System.Drawing.Size(100, 20);
             this.textBox2.TabIndex = 2;
             // 
-            // radioButton1
+            // radioButton_server
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(268, 26);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(86, 17);
-            this.radioButton1.TabIndex = 3;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Server Mode";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton_server.AutoSize = true;
+            this.radioButton_server.Checked = true;
+            this.radioButton_server.Location = new System.Drawing.Point(268, 26);
+            this.radioButton_server.Name = "radioButton_server";
+            this.radioButton_server.Size = new System.Drawing.Size(86, 17);
+            this.radioButton_server.TabIndex = 3;
+            this.radioButton_server.TabStop = true;
+            this.radioButton_server.Text = "Server Mode";
+            this.radioButton_server.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // radioButton_client
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(268, 49);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(81, 17);
-            this.radioButton2.TabIndex = 4;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Client Mode";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton_client.AutoSize = true;
+            this.radioButton_client.Location = new System.Drawing.Point(268, 49);
+            this.radioButton_client.Name = "radioButton_client";
+            this.radioButton_client.Size = new System.Drawing.Size(81, 17);
+            this.radioButton_client.TabIndex = 4;
+            this.radioButton_client.Text = "Client Mode";
+            this.radioButton_client.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -105,14 +106,14 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "IP Address";
             // 
-            // button2
+            // button_continue
             // 
-            this.button2.Location = new System.Drawing.Point(268, 245);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Continue";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button_continue.Location = new System.Drawing.Point(279, 245);
+            this.button_continue.Name = "button_continue";
+            this.button_continue.Size = new System.Drawing.Size(75, 23);
+            this.button_continue.TabIndex = 7;
+            this.button_continue.Text = "Continue";
+            this.button_continue.UseVisualStyleBackColor = true;
             // 
             // textBox3
             // 
@@ -148,23 +149,36 @@
             this.label4.TabIndex = 11;
             this.label4.Text = "Data as Received";
             // 
+            // button_connect
+            // 
+            this.button_connect.Location = new System.Drawing.Point(118, 245);
+            this.button_connect.Name = "button_connect";
+            this.button_connect.Size = new System.Drawing.Size(75, 23);
+            this.button_connect.TabIndex = 12;
+            this.button_connect.Text = "Connect";
+            this.button_connect.UseVisualStyleBackColor = true;
+            this.button_connect.Click += new System.EventHandler(this.button_connect_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(375, 291);
+            this.Controls.Add(this.button_connect);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button_continue);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.radioButton_client);
+            this.Controls.Add(this.radioButton_server);
             this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.button_send);
             this.Controls.Add(this.textBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "SimpleVPN";
             this.ResumeLayout(false);
@@ -175,17 +189,18 @@
         #endregion
 
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button_send;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton_server;
+        private System.Windows.Forms.RadioButton radioButton_client;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button_continue;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button_connect;
     }
 }
 
