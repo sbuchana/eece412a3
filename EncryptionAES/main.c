@@ -1,4 +1,5 @@
 # include "encrypt.h"
+# include "hash.h"
 
 int main(){
 	unsigned char text[] = { "this is aes encryption test.12" };
@@ -20,6 +21,12 @@ int main(){
 		
 
 	// ---------- hash test ----------- \\
+	
+	unsigned char* keyMD5 = hashMD5(key, strlen(key));
+	unsigned char* keySHA1 = hashSHA(key, strlen(key));
+
+	if (DEBUG) printHash(MD5_DIGEST_LENGTH, keyMD5);
+	if (DEBUG) printHash(SHA_DIGEST_LENGTH, keySHA1);
 
 	system("PAUSE");
 	return 0;
