@@ -10,7 +10,7 @@
 # include <openssl\rand.h>
 
 # define AES_BLOCK_SIZE 16		// 128-bits
-# define DEBUG 0				// for debugging purposes
+# define DEBUG 1				// for debugging purposes
 /*	
 *	struct to maintain IV, num and ecount which are used
 *	by AES_ctr128_encrypt()
