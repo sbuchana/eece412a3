@@ -38,18 +38,19 @@ namespace SimpleVPN
 			// Return the partial key
 			return (int)(power((BigInteger)this.g, (BigInteger)this.a) % this.p);
 		}
-
 		public void generateSessionKey(int b)
 		{
 			this.key = (int)(power((BigInteger)b, (BigInteger)this.a) % this.p);
 
-			// Forget everything except the key
+			// Forget the number used to create the key
 			this.a = 0;
-			this.g = 0;
-			this.p = 0;
 		}
-
-		public BigInteger power(BigInteger x, BigInteger y)
+		public void updateGenerator(int p, int g)
+		{
+			this.p = p;
+			this.g = g;
+		}
+		private BigInteger power(BigInteger x, BigInteger y)
 		{
 			// This is a function to generate powers of large numbers
 			BigInteger result = x;
