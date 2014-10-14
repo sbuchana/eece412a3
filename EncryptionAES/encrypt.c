@@ -4,29 +4,6 @@
 
 # include "encrypt.h"
 
-int main(){
-	unsigned char text[] = { "this is aes encryption test." };
-	unsigned char key[] = { "thisIsMykey12345" };
-	unsigned char* ciphertext;
-	unsigned char* plaintext;
-	int encryptedSize, plainSize;
-
-	ciphertext = encrypt(text, 28, &encryptedSize, key);
-	if (DEBUG) printHEX(ciphertext, encryptedSize);
-	if (DEBUG) printASCII(ciphertext, encryptedSize);
-
-	// -------------------------------------------------------------- \\
-
-	plaintext = decrypt(ciphertext, encryptedSize, &plainSize, key);
-	if (DEBUG) printHEX(plaintext, plainSize);
-	if (DEBUG) printASCII(plaintext, plainSize);
-
-	printf("Decrypted text of size %i: %s\n", plainSize, plaintext);
-
-	system("PAUSE");
-	return 0;
-}
-
 /*
 *	Encryption using openssl-aes-ctr mode
 *	Parameter:	enc_key must be 16 bytes long
@@ -58,6 +35,7 @@ unsigned char* encrypt(unsigned char* input, int size, int* outputSize, const un
 
 	// padding last block if not multiple of 16 bytes
 	numPaddings = AES_BLOCK_SIZE - (size % AES_BLOCK_SIZE);
+	if (numPaddings == 16) numPaddings = 0;
 	if (DEBUG) printf("Size is %i, numPaddings: %i, numBlocks: %i\n", size, numPaddings, numBlocks);
 
 	memcpy(inputHolder, input, size);
