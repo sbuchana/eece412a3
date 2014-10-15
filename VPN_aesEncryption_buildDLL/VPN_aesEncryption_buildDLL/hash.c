@@ -27,7 +27,8 @@ unsigned char* hashMD5(unsigned char* input, int size){
 *	Param:	size of hash in bytes
 */
 void printHash(int size, unsigned char* hash){
-	for (int i = 0; i < size; i++)
+	int i=0;
+	for (i = 0; i < size; i++)
 		printf("%02x", (unsigned int)hash[i]);
 	printf("\n");
 }

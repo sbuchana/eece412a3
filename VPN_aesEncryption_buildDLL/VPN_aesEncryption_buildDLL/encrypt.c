@@ -18,6 +18,7 @@ unsigned char* encrypt(unsigned char* input, int size, int* outputSize, const un
 	unsigned char* ciphertext;
 	int numPaddings;
 	int numBlocks;
+	int i=0;
 
 	// encryption setup
 	init_aes_ctr(&state);
@@ -46,7 +47,7 @@ unsigned char* encrypt(unsigned char* input, int size, int* outputSize, const un
 	memcpy(ciphertext, state.iv, AES_BLOCK_SIZE);
 
 	// encrypt using ctr mode
-	for (int i = 0; i < numBlocks; i++){
+	for (i = 0; i < numBlocks; i++){
 		AES_ctr128_encrypt(inputHolder + (i * AES_BLOCK_SIZE), 
 							ciphertext + ((i + 1) * AES_BLOCK_SIZE),
 							AES_BLOCK_SIZE, &key,
@@ -89,7 +90,7 @@ unsigned char* decrypt(unsigned char* ciphertext, int size, int* outputSize, con
 	}
 
 	// decrypt (encrypt ciphertext)
-	for (int i = 0; i < numBlocks; i++){
+	for (i = 0; i < numBlocks; i++){
 		AES_ctr128_encrypt(ciphertext + ((i + 1) * AES_BLOCK_SIZE),
 			plaintext + (i * AES_BLOCK_SIZE),
 			AES_BLOCK_SIZE, &key,
@@ -147,13 +148,15 @@ void init_dec_ctr(struct aes_ctr_state* state, unsigned char* iv){
 *	Function to print the HEX value of an array
 */
 void printHEX(unsigned char* chars, int size){
-	for (int i = 0; i < size; i++)
+	int i=0;
+	for (i = 0; i < size; i++)
 		printf("0x%X ", chars[i]);
 	printf("\n\n");
 }
 
 void printASCII(unsigned char* chars, int size){
-	for (int i = 0; i < size; i++)
+	int i=0;
+	for (i = 0; i < size; i++)
 		printf("%c", chars[i]);
 	printf("\n\n");
 }
