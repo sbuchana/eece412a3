@@ -119,5 +119,11 @@ namespace SimpleVPN
             get { return textBox_sharedsecretkey.Text; }
             set { textBox_sharedsecretkey.Text = value; }
         }
+
+        public string TextBox_Console
+        {
+            get { return textBox_Console.Text; }
+            set { textBox_Console.Text = value; }
+        }
     }
 }

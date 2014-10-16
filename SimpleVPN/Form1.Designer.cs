@@ -35,7 +35,6 @@
             this.radioButton_client = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button_continue = new System.Windows.Forms.Button();
             this.textBox_sent = new System.Windows.Forms.TextBox();
             this.textBox_received = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -44,6 +43,7 @@
             this.label_status = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox_sharedsecretkey = new System.Windows.Forms.TextBox();
+            this.textBox_Console = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // textBox1
@@ -55,9 +55,9 @@
             // 
             // button_send
             // 
-            this.button_send.Location = new System.Drawing.Point(198, 263);
+            this.button_send.Location = new System.Drawing.Point(251, 263);
             this.button_send.Name = "button_send";
-            this.button_send.Size = new System.Drawing.Size(75, 23);
+            this.button_send.Size = new System.Drawing.Size(103, 23);
             this.button_send.TabIndex = 7;
             this.button_send.Text = "Send";
             this.button_send.UseVisualStyleBackColor = true;
@@ -112,16 +112,6 @@
             this.label2.TabIndex = 11;
             this.label2.Text = "IP Address";
             // 
-            // button_continue
-            // 
-            this.button_continue.Location = new System.Drawing.Point(279, 263);
-            this.button_continue.Name = "button_continue";
-            this.button_continue.Size = new System.Drawing.Size(75, 23);
-            this.button_continue.TabIndex = 8;
-            this.button_continue.Text = "Continue";
-            this.button_continue.UseVisualStyleBackColor = true;
-            this.button_continue.Click += new System.EventHandler(this.button_continue_Click);
-            // 
             // textBox_sent
             // 
             this.textBox_sent.Location = new System.Drawing.Point(118, 91);
@@ -160,7 +150,7 @@
             // 
             this.button_connect.Location = new System.Drawing.Point(118, 263);
             this.button_connect.Name = "button_connect";
-            this.button_connect.Size = new System.Drawing.Size(75, 23);
+            this.button_connect.Size = new System.Drawing.Size(109, 23);
             this.button_connect.TabIndex = 6;
             this.button_connect.Text = "Connect";
             this.button_connect.UseVisualStyleBackColor = true;
@@ -191,11 +181,20 @@
             this.textBox_sharedsecretkey.Size = new System.Drawing.Size(236, 20);
             this.textBox_sharedsecretkey.TabIndex = 5;
             // 
+            // textBox_Console
+            // 
+            this.textBox_Console.Location = new System.Drawing.Point(382, 12);
+            this.textBox_Console.Multiline = true;
+            this.textBox_Console.Name = "textBox_Console";
+            this.textBox_Console.Size = new System.Drawing.Size(225, 289);
+            this.textBox_Console.TabIndex = 16;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(375, 323);
+            this.ClientSize = new System.Drawing.Size(626, 323);
+            this.Controls.Add(this.textBox_Console);
             this.Controls.Add(this.textBox_sharedsecretkey);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label_status);
@@ -204,7 +203,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox_received);
             this.Controls.Add(this.textBox_sent);
-            this.Controls.Add(this.button_continue);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.radioButton_client);
@@ -230,7 +228,6 @@
         private System.Windows.Forms.RadioButton radioButton_client;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button_continue;
         private System.Windows.Forms.TextBox textBox_sent;
         private System.Windows.Forms.TextBox textBox_received;
         private System.Windows.Forms.Label label3;
@@ -239,6 +236,7 @@
         private System.Windows.Forms.Label label_status;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox_sharedsecretkey;
+        private System.Windows.Forms.TextBox textBox_Console;
     }
 }
 

@@ -89,6 +89,8 @@ namespace SimpleVPN
                 handshake[5] = othernonce;
                 handshake[6] = nonce;
 
+                Form.TextBox_Console += "Second Handshake: Prime, Root, Gmod, Direction, Client Nonce, Server Nonce\n" + Utilities.BuildString(handshake) + "\n";
+
                 Send(handshake);
             }
             else if (recoveredbytes[0] == Utilities.GetBytes("~")[0])
@@ -109,8 +111,6 @@ namespace SimpleVPN
                 Authentication.generateSessionKey(othergMod);
 
                 SessionKey = Authentication.key;
-
-                MessageBox.Show("SessionKey: " + SessionKey.ToString() + "\nOtherGmod=" + othergMod + "\nRoot=" + handshake[2] + "\nPrime=" + handshake[1]);
             }
             else
             {

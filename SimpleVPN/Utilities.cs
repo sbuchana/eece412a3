@@ -76,6 +76,17 @@ namespace SimpleVPN
             }
             return sb.ToString();
         }
+
+        public static string BuildString(byte[] input)
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < input.Length; i++)
+            {
+                sb.Append(input[i].ToString("X2"));
+                sb.Append(",");
+            }
+            return sb.ToString();
+        }
     }
 }
 
