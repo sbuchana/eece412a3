@@ -104,7 +104,7 @@ namespace SimpleVPN
                 handshake[5] = nonce;
                 handshake[6] = othernonce;
 
-                Form.TextBox_Console += "\n\nThird Handshake: Prime, Root, Gmod, Direction, Client Nonce, Server Nonce\n" + Utilities.BuildString(handshake) + "\n";
+                Form.TextBox_Console += "\r\n\r\nThird Handshake: Prime, Root, Gmod, Direction, Client Nonce, Server Nonce\n" + Utilities.BuildString(handshake) + "\n";
 
                 Send(handshake);
 
