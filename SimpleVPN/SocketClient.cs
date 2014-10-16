@@ -12,13 +12,15 @@ namespace SimpleVPN
 
         private byte[] handshake;
         private int SessionKey;
+        private dh Authentication;
+        private byte nonce;
 
         public SocketClient(String IPAddress, int Port)
         {
             this.IPAddress = IPAddress;
             this.Port = Port;
             Socket = new NetConnection();
-            handshake = new byte[4];
+            handshake = new byte[7];
             SessionKey = 0;
         }
 
@@ -32,13 +34,17 @@ namespace SimpleVPN
                 Socket.Connect(IPAddress, Port);
 
                 var primeGen = new pGen();
-                var Authentication = new dh(primeGen.prime, primeGen.root);
-                var gMod = Authentication.generatePartialKey();
+                var rand = new Random();
+                nonce = (byte)rand.Next();
+                var direction = Utilities.GetBytes("C")[0];
 
-                handshake[0] = Utilities.GetBytes("~")[0];
+                handshake[0] = Utilities.GetBytes("*")[0];
                 handshake[1] = (byte)primeGen.prime;
                 handshake[2] = (byte)primeGen.root;
-                handshake[3] = (byte)gMod;
+                handshake[3] = 0;
+                handshake[4] = (byte)direction;
+                handshake[5] = nonce;
+                handshake[6] = 0;
 
                 Send(handshake);
             }
@@ -56,8 +62,19 @@ namespace SimpleVPN
         public void netconnection_OnDataReceived(object sender, NetConnection connection, byte[] data)
         {
             int outSize = 0;
-            var sharedkey = Utilities.GetBytes(Form.TextBox_SharedSecretKey);
-            var recoveredbytes = Utilities.Decrypt(data, data.Length, outSize, sharedkey);
+            var hashedkey = new byte[16];
+
+            if (SessionKey == 0)
+            {
+                hashedkey = Utilities.GetBytes(Form.TextBox_SharedSecretKey);
+            }
+            else
+            {
+                hashedkey = Utilities.MD5Hash(SessionKey.ToString());
+            }
+
+            var recoveredbytes = Utilities.Decrypt(data, data.Length, outSize, hashedkey);
+
             if (recoveredbytes[0] == Utilities.GetBytes("~")[0])
             {
                 for (var i = 0; i < handshake.Length; i++)
@@ -65,10 +82,34 @@ namespace SimpleVPN
                     handshake[i] = recoveredbytes[i];
                 }
 
-                var Authentication = new dh(handshake[1], handshake[2]);
+                if (handshake[4] != Utilities.GetBytes("S")[0] || handshake[5] != nonce)
+                {
+                    MessageBox.Show("Authentication failed.");
+                    Form.Label_Status = "Status: Disconnected";
+                    return;
+                }
+
+                Authentication = new dh(handshake[1], handshake[2]);
                 var gMod = Authentication.generatePartialKey();
-                Authentication.generateSessionKey(gMod);
+                var othergMod = handshake[3];
+                var direction = Utilities.GetBytes("C")[0];
+                var othernonce = handshake[6];
+
+                handshake[0] = Utilities.GetBytes("~")[0];
+                handshake[1] = (byte)handshake[1];
+                handshake[2] = (byte)handshake[2];
+                handshake[3] = (byte)gMod;
+                handshake[4] = (byte)direction;
+                handshake[5] = nonce;
+                handshake[6] = othernonce;
+
+                Send(handshake);
+
+                Authentication.generateSessionKey(othergMod);
                 SessionKey = Authentication.key;
+
+                MessageBox.Show("SessionKey: " + SessionKey.ToString() + "\nGmod=" + gMod + "\nRoot=" + handshake[2] + "\nPrime=" + handshake[1]);
+
             }
             else
             {
