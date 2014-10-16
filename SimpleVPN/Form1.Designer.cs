@@ -120,6 +120,7 @@
             this.button_continue.TabIndex = 8;
             this.button_continue.Text = "Continue";
             this.button_continue.UseVisualStyleBackColor = true;
+            this.button_continue.Click += new System.EventHandler(this.button_continue_Click);
             // 
             // textBox_sent
             // 

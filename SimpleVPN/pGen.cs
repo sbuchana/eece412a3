@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Security.Cryptography;
 
 namespace SimpleVPN
@@ -42,6 +38,7 @@ namespace SimpleVPN
 		public pGen()
 		{
 			this.pRand = new RNGCryptoServiceProvider();
+			getNewPrime();
 		}
 		public void getNewPrime()
 		{
@@ -65,9 +62,9 @@ namespace SimpleVPN
 			// Prints off all primes available to this class
 			Console.WriteLine("Prime List:");
 			Console.WriteLine("List Length: " + _3DigitPrimeList.Length);
-			for (int i = 0; i < (_3DigitPrimeList.Length) / 2; i++)
+			for (int i = 0; i < (_3DigitPrimeList.Length)/2; i++)
 			{
-				Console.WriteLine("Prime: " + _3DigitPrimeList[i, 0] + "  root: " + _3DigitPrimeList[i, 1]);
+				Console.WriteLine("Prime: "+_3DigitPrimeList[i,0]+"  root: "+_3DigitPrimeList[i,1]);
 			}
 
 			// Generates 1000 random prime / root pairs
@@ -77,6 +74,6 @@ namespace SimpleVPN
 				Console.WriteLine("Prime: " + this.prime + "  root: " + this.root);
 			}
 		}
-
+		
 	}
 }

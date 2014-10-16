@@ -12,7 +12,10 @@ namespace SimpleVPN
         public Form1()
         {
             InitializeComponent();
-            SearchForLocalIP();
+            textBox1.Text = "1310";
+            textBox2.Text = "128.189.215.73";
+            textBox_sharedsecretkey.Text = "Key";
+            //SearchForLocalIP();
         }
 
         private void button_connect_Click(object sender, EventArgs e)
@@ -59,14 +62,14 @@ namespace SimpleVPN
         {
             if (radioButton_server.Checked == true)
             {
-                SearchForLocalIP();
+                //SearchForLocalIP();
             }
         }
 
         private void radioButton_client_CheckedChanged(object sender, EventArgs e)
         {
             textBox2.Enabled = true;
-            textBox2.Clear();
+            //textBox2.Clear();
         }
 
         private void SearchForLocalIP()
@@ -86,6 +89,12 @@ namespace SimpleVPN
             }
         }
 
+        private void button_continue_Click(object sender, EventArgs e)
+        {
+            var sharedkey = textBox_sharedsecretkey.Text;
+            var bytes = Utilities.MD5Hash(sharedkey);
+        }
+
         //Exposed Form Controls
         public string TextBox_Received
         {
@@ -97,6 +106,12 @@ namespace SimpleVPN
         {
             get { return label_status.Text; }
             set { label_status.Text = value; }
+        }
+
+        public string TextBox_SharedSecretKey
+        {
+            get { return textBox_sharedsecretkey.Text; }
+            set { textBox_sharedsecretkey.Text = value; }
         }
     }
 }
