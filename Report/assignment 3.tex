@@ -92,7 +92,7 @@ The major components of our VPN are as follows:
 	\end{figure}
 	Our GUI was built with C\# in Visual Studio Designer.
 	As inputs the GUI accepts the user's choice of Client or Server Mode, the Port number, the IP Address of your machine, the data you would like to send to the client/server, and the Shared Secret Value.\\
-	As outputs the GUI will display the \emph{Data as Received} from the client/server.% followed by the \emph{Decrypted Received Data}.\\
+	As outputs the GUI will display the \emph{Data as Received} from the client/server and a log of the inner workings of the VPN.\\% followed by the \emph{Decrypted Received Data}.
 	For this component, the functionality is as follows. Your choice of Client or Server Mode is determined via radio buttons. The user inputs the Port number into a text box. The IP Address is automatically pulled from system information or can be modified by the user in the text box. The \emph{Data to be Sent} is entered in a text box, sent to our module for encryption along with the \emph{Shared Secret Value}, then sent to the TCP Socket Communication component to be sent to the other client/server.  The TCP Socket Communication component is also the source for the \emph{Data as Received}. % while our encryption module fills our \emph{Decrypted Received Data} field.
 	
 	\item[\bfseries Encryption/Decryption] \hfill \\
