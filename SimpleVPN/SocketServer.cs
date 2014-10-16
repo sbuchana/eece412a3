@@ -70,5 +70,23 @@ namespace SimpleVPN
         {
             Form.Label_Status = "Status: Disconnected";
         }
+
+        public void Send(byte[] data)
+        {
+            var hashedkey = new byte[16];
+
+            if (SessionKey == 0)
+            {
+                hashedkey = Utilities.GetBytes(Form.TextBox_SharedSecretKey);
+            }
+            else
+            {
+                hashedkey = Utilities.MD5Hash(SessionKey.ToString());
+            }
+
+            int outsize = 0;
+            var cipher = Utilities.Encrypt(data, data.Length, outsize, hashedkey);
+            Socket.Send(cipher);
+        }
     }
 }

@@ -55,6 +55,26 @@ namespace SimpleVPN
 
         public void netconnection_OnDataReceived(object sender, NetConnection connection, byte[] data)
         {
+            int outSize = 0;
+            var sharedkey = Utilities.GetBytes(Form.TextBox_SharedSecretKey);
+            var recoveredbytes = Utilities.Decrypt(data, data.Length, outSize, sharedkey);
+            if (recoveredbytes[0] == Utilities.GetBytes("~")[0])
+            {
+                for (var i = 0; i < handshake.Length; i++)
+                {
+                    handshake[i] = recoveredbytes[i];
+                }
+
+                var Authentication = new dh(handshake[1], handshake[2]);
+                var gMod = Authentication.generatePartialKey();
+                Authentication.generateSessionKey(gMod);
+                SessionKey = Authentication.key;
+            }
+            else
+            {
+                var text = Utilities.GetString(recoveredbytes);
+                Form.TextBox_Received = text;
+            }
         }
 
         public void netconnection_OnDisconnect(object sender, NetConnection connection)

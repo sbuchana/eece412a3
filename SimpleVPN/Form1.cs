@@ -50,11 +50,17 @@ namespace SimpleVPN
 
         private void button_send_Click(object sender, EventArgs e)
         {
-            if (socket.GetType() == typeof(SocketClient)) 
+            if (socket.GetType() == typeof(SocketClient))
             {
-                var client = (SocketClient) socket;
+                var client = (SocketClient)socket;
                 var inputbytes = Utilities.GetBytes(textBox_sent.Text);
                 client.Send(inputbytes);
+            }
+            else
+            {
+                var server = (SocketServer)socket;
+                var inputbytes = Utilities.GetBytes(textBox_sent.Text);
+                server.Send(inputbytes);
             }
         }
 

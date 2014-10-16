@@ -14,6 +14,7 @@ namespace SimpleVPN
 
         private TcpClient client;
         private TcpListener listener;
+        private Socket bisocket;
         private List<Task> tasks = new List<Task>();
 
         public event NetConnectionEventHandler OnConnect;
@@ -98,8 +99,15 @@ namespace SimpleVPN
 
         public void Send(byte[] data)
         {
-            CheckServerUsedAsClient();
-            client.GetStream().Write(data, 0, data.Length);
+            try
+            {
+                CheckServerUsedAsClient();
+                client.GetStream().Write(data, 0, data.Length);
+            }
+            catch
+            {
+                bisocket.Send(data);
+            }
         }
 
         private void CallOnDataReceived(NetConnection connection, byte[] data)
@@ -154,6 +162,7 @@ namespace SimpleVPN
             {
                 TcpClient client = await listener.AcceptTcpClientAsync();
                 NetConnection connection = new NetConnection(client);
+                bisocket = client.Client;
                 StartReceiveFrom(connection);
                 OnConnect(this, connection);
             }
